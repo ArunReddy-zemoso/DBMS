@@ -1,0 +1,30 @@
+1)
+select count(*) from film f
+join film_category fc on f.film_id=fc.film_id
+join category ca on fc.category_id=ca.category_id
+where ca.name='Documentary' and f.special_features like '%Deleted Scenes%';
+
+2)
+select count(r.rental_id) from rental r
+join inventory i
+on i.inventory_id=r.inventory_id
+join film_category fc on fc.film_id=i.film_id
+join category ca on ca.category_id=fc.category_id
+join staff_list sl
+on sl.id=i.store_id
+where ca.name="Sci-Fi" and sl.name="Jon Stephens";
+
+3)
+select total_sales from sales_by_film_category where category="Animation";
+
+4)
+select fl.category, count(fl.category) from customer c 
+JOIN rental r  on c.customer_id=r.customer_id
+JOIN inventory i on r.inventory_id=i.inventory_id 
+JOIN film_list fl on i.film_id=fl.FID 
+where c.first_name="PATRICIA" and c.last_name="JOHNSON" 
+group by fl.category order by count(fl.category) desc LIMIT 3;
+
+5)
+select count(rating) from customer c
+join film f where c.first_name="SUSAN" and c.last_name="WILSON" and f.rating="R";

@@ -1,0 +1,21 @@
+
+1)
+select title from film where rating = 'PG-13' and 
+film_id in (select film_id from film_category where category_id = (select category_id from category where category.name='Comedy'));
+
+2)
+select title from film where 
+(film_id in (select film_id from film_category where category_id = (select category_id from category where category.name='Horror')))
+order by rental_rate desc limit 3;
+
+3)
+select * from customer_list where country='India' and ID in (select r.customer_id from film_list f1,inventory i,rental r 
+where f1.category='Sports' and f1.FID=i.film_id and r.inventory_id = i.inventory_id);
+
+4)
+select * from customer_list cl 
+where country='Canada' and  ID in (select r.customer_id from actor a,film_actor fa,inventory i,rental r
+where a.first_name='NICK' and a.last_name='WAHLBERG' and a.actor_id=fa.actor_id and fa.film_id=i.film_id and i.inventory_id=r.inventory_id);
+
+5)
+select count(*) from film_actor where actor_id=(select actor_id from actor where first_name="SEAN" and last_name="WILLIAMS");

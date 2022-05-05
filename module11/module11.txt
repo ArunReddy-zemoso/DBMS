@@ -15,7 +15,7 @@ i) Group FDs with the same determinant (LHS)
    VisitNo, ProvNo -> Diagnosis 
    ProvEmail -> ProvNo
 
-ii) Create Tables using Determinant as primary key, adding foreign keys where necessary (Bold indicates primary key, Italics indicates foreign key)
+ii) Create Tables using Determinant as primary key, adding foreign keys where necessary
     Patient(PatNo, PatAge, PatZip) FOREIGN KEY (PatZip) REFERENCES Zip
     Zip(PatZip, PatCity)
     Visit(VisitNo, VisitDate, PatNo) FOREIGN KEY (PatNo) REFERENCES Patient
@@ -31,4 +31,34 @@ iii) Merge tables if one contains columns that are a subset of another table
      Provider(ProvNo, ProvSpecialty, ProvEmail) UNIQUE ProviderEmail
      Appointment(VisitNo, ProvNo, Diagnosis) FOREIGN KEY (VisitNo) REFERENCES Visit FOREIGN KEY (ProvNo) REFERENCES Provider
 
+
+3)
+    1.) Table Name - Lender
+    Primary Key - LenderNo
+    Columns - LenderNo, LenderName(Unique)
+    2.) Table Name - Institution
+    Primary Key - InstNo
+    Columns - InstNo, InstName(Unique), InstMascot
+    3.) Table Name - Student
+    Primary Key - StdNo
+    Columns - StdNo, StdName, StdEmail(Unique), StdAddress, StdCity, StdState, StdZip
+
+    The following tables are in BCNF
+
+
+4)
+	1.) OrdNo -> ItemNo
+	This FD falsifies due to rows (1,2) and (3,4)
+	2.) OrdNo -> QtyOrd
+	This FD falsifies due to rows (3,4)
+	3.) OrdNo -> CustNo
+	This FD is valid
+	4.) OrdNo -> CustBal
+	This FD is valid
+	5.) OrdNo -> CustDisc
+	This FD is valid
+	6.) OrdNo -> ItemPrice
+	This FD falsifies due to rows (1,2) and (3,4)
+	7.) OrdNo -> OrdDate
+	This FD is valid
      
